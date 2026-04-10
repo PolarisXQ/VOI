@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        video { max-width: 400px; margin: 10px; border: 1px solid #ccc; }
+        .test-section { margin: 20px 0; padding: 20px; border: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <h1>Video Compatibility Test</h1>
+    
+    <div class="test-section">
+        <h2>Test 1: Basic Video with Multiple Sources</h2>
+        <video controls preload="metadata" width="400">
+            <source src="./static/videos/drone.mp4" type="video/mp4; codecs='mp4v.20.9'">
+            <source src="./static/videos/drone.mp4" type="video/mp4">
+            <p>Your browser does not support this video format.</p>
+        </video>
+        <p>Status: <span id="status1">Loading...</span></p>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 2: Simple MP4</h2>
+        <video controls preload="metadata" width="400">
+            <source src="./static/videos/rsu.mp4" type="video/mp4">
+            <p>Your browser does not support this video format.</p>
+        </video>
+        <p>Status: <span id="status2">Loading...</span></p>
+    </div>
+
+    <div class="test-section">
+        <h2>Test 3: With Playsinline</h2>
+        <video controls preload="metadata" playsinline webkit-playsinline width="400">
+            <source src="./static/videos/vehicle.mp4" type="video/mp4">
+            <p>Your browser does not support this video format.</p>
+        </video>
+        <p>Status: <span id="status3">Loading...</span></p>
+    </div>
+
+    <script>
+        const videos = document.querySelectorAll('video');
+        videos.forEach((video, index) => {
+            const statusElement = document.getElementById(`status${index + 1}`);
+            
+            video.addEventListener('loadedmetadata', function() {
+                statusElement.textContent = `✓ Loaded successfully (${this.videoWidth}x${this.videoHeight})`;
+                statusElement.style.color = 'green';
+            });
+            
+            video.addEventListener('error', function(e) {
+                statusElement.textContent = `✗ Failed to load: ${e.target.error?.message || 'Unknown error'}`;
+                statusElement.style.color = 'red';
+            });
+            
+            video.addEventListener('canplay', function() {
+                console.log(`Video ${index + 1} can play`);
+            });
+        });
+    </script>
+</body>
+</html>
