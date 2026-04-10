@@ -2,20 +2,24 @@
     <!-- Hero Section -->
     <section class="hero">
         <p class="hero-overline">PISCO</p>
-        <h1>Precise Video Instance Insertion<br>with Sparse Control</h1>
-        <p class="hero-subtitle">High-fidelity object insertion with minimal user effort.</p>
+        <h1>Controllable Video Object Insertion<br>via Multiview Priors</h1>
+        <!-- <p class="hero-subtitle">High-fidelity object insertion with minimal user effort.</p> -->
         
         <div class="hero-links">
-            <a href="https://arxiv.org/abs/2602.08277" class="pill">Paper</a>
-            <a href="https://github.com/taco-group/PISCO" class="pill">Code</a>
-            <a href="https://github.com/XiangboGaoBarry/PISCO-Development-Tools" class="pill">Tools</a>
-            <a href="https://huggingface.co/xiangbog/PISCO-14B" class="pill">Model</a>
+            <a href="https://polarisxq.github.io/VOI/" class="pill">Paper</a>
+            <a href="https://polarisxq.github.io/VOI/" class="pill">Code</a>
+            <!-- <a href="https://github.com/XiangboGaoBarry/PISCO-Development-Tools" class="pill">Tools</a> -->
+            <a href="https://polarisxq.github.io/VOI/" class="pill">Model</a>
         </div>
         
-        <p class="hero-authors">
+        <!-- <p class="hero-authors">
             <a href="https://www.xiangbogao.com/" class="author-link">Xiangbo Gao</a><sup>1</sup> &middot; Renjie Li<sup>1</sup> &middot; Xinghao Chen<sup>1</sup> &middot; Yuheng Wu<sup>3</sup> &middot; Suofei Feng<sup>4</sup> &middot; Qing Yin<sup>2</sup> &middot; <a href="https://taco-group.github.io/index.html" class="author-link">Zhengzhong Tu</a><sup>1</sup>
         </p>
-        <p class="hero-affiliation"><sup>1</sup>Texas A&M University &nbsp; <sup>2</sup>Visko Platform &nbsp; <sup>3</sup>KAIST &nbsp; <sup>4</sup>Stanford University</p>
+        <p class="hero-affiliation"><sup>1</sup>Texas A&M University &nbsp; <sup>2</sup>Visko Platform &nbsp; <sup>3</sup>KAIST &nbsp; <sup>4</sup>Stanford University</p> -->
+
+        <!-- Anonymous Author and Affiliation -->
+        <p class="hero-authors">Anonymous Author</p>
+        <p class="hero-affiliation">Anonymous Affiliation</p>
 
         <!-- Main Demo Video -->
         <div class="hero-video-container">
@@ -23,9 +27,9 @@
         </div>
 
         <!-- Development Tool Video -->
-        <div class="hero-video-container">
+        <!-- <div class="hero-video-container">
             <video id="dev-tool-video" src="static/dev_tool.mp4" autoplay loop muted playsinline controls class="hero-video"></video>
-        </div>
+        </div> -->
     </section>
 
     <!-- Abstract Section -->
@@ -33,11 +37,7 @@
         <div class="container narrow">
             <h2>Abstract</h2>
             <p class="body-large">
-                The landscape of AI video generation is shifting towards fine-grained, controllable generation. 
-                We propose <strong>PISCO</strong>, a video diffusion model for precise video instance insertion with arbitrary sparse keyframe control.
-            </p>
-            <p class="body-large">
-                PISCO allows users to specify sparse keyframes at arbitrary timestamps, and automatically propagates object appearance, motion, and interaction while maintaining physical consistency.
+                Video object insertion is a critical task for dynamically inserting new objects into existing environments. Previous video generation methods focus primarily on synthesizing entire scenes while struggle with ensuring consistent object appearance, spatial alignment, and temporal coherence when inserting objects into existing videos. In this paper, we propose a novel solution for Video Object Insertion, which integrates multi-view object priors to address the common challenges of appearance inconsistency and occlusion handling in dynamic environments. By lifting 2D reference images into multi-view representations and leveraging a dual-path view-consistent conditioning mechanism, our framework ensures stable identity guidance and robust integration across diverse viewpoints. A quality-aware weighting mechanism is also conducted to adaptively handle noisy or imperfect inputs. Additionally, we introduce an Integration-Aware Consistency Module that guarantee spatial realism, effectively resolving occlusion and boundary artifacts while maintaining temporal continuity across frames. Experimental results show that our solution significantly improves the quality of video object insertion, providing stable and realistic integration.
             </p>
         </div>
     </section>
@@ -57,17 +57,17 @@
                     <div class="video-compare-container">
                         <div class="video-wrapper">
                             <video loop muted playsinline preload="metadata">
-                                <source src="static/demos/instance insertion/edited/boat_labubu.mp4" type="video/mp4">
+                                <source src="static/demos/instance_ins/edited/walk.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-overlay">
                             <video loop muted playsinline preload="metadata">
-                                <source src="static/demos/instance insertion/origin/boat_labubu.mp4" type="video/mp4">
+                                <source src="static/demos/instance_ins/origin/walk.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-compare-slider"><div class="slider-handle"></div></div>
                         <span class="compare-label label-left">Original</span>
-                        <span class="compare-label label-right">PISCO</span>
+                        <span class="compare-label label-right">Edited</span>
                     </div>
                 </div>
 
@@ -75,17 +75,17 @@
                     <div class="video-compare-container">
                         <div class="video-wrapper">
                             <video loop muted playsinline preload="metadata">
-                                <source src="static/demos/instance insertion/edited/light.mp4" type="video/mp4">
+                                <source src="static/demos/instance_ins/edited/stone.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-overlay">
                             <video loop muted playsinline preload="metadata">
-                                <source src="static/demos/instance insertion/origin/light.mp4" type="video/mp4">
+                                <source src="static/demos/instance_ins/origin/stone.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-compare-slider"><div class="slider-handle"></div></div>
                         <span class="compare-label label-left">Original</span>
-                        <span class="compare-label label-right">PISCO</span>
+                        <span class="compare-label label-right">Edited</span>
                     </div>
                 </div>
 
@@ -94,17 +94,17 @@
                     <div class="video-compare-container">
                         <div class="video-wrapper">
                             <video loop muted playsinline preload="metadata">
-                                <source src="static/demos/instance insertion/edited/save_lotos.mp4" type="video/mp4">
+                                <source src="static/demos/instance_ins/edited/maple.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-overlay">
                             <video loop muted playsinline preload="metadata">
-                                <source src="static/demos/instance insertion/origin/save_lotos.mp4" type="video/mp4">
+                                <source src="static/demos/instance_ins/origin/maple.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-compare-slider"><div class="slider-handle"></div></div>
                         <span class="compare-label label-left">Original</span>
-                        <span class="compare-label label-right">PISCO</span>
+                        <span class="compare-label label-right">Edited</span>
                     </div>
                 </div>
 
@@ -112,38 +112,38 @@
                     <div class="video-compare-container">
                         <div class="video-wrapper">
                             <video loop muted playsinline preload="metadata">
-                                <source src="static/demos/instance insertion/edited/the_trench_run.mp4" type="video/mp4">
+                                <source src="static/demos/instance_ins/edited/turning.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-overlay">
                             <video loop muted playsinline preload="metadata">
-                                <source src="static/demos/instance insertion/origin/the_trench_run.mp4" type="video/mp4">
+                                <source src="static/demos/instance_ins/origin/turning.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-compare-slider"><div class="slider-handle"></div></div>
                         <span class="compare-label label-left">Original</span>
-                        <span class="compare-label label-right">PISCO</span>
+                        <span class="compare-label label-right">Edited</span>
                     </div>
                 </div>
             </div>
 
-            <h3 class="comparison-title">Creative & Simulation</h3>
+            <h3 class="comparison-title">Foreground or Background Substitution</h3>
             <div class="demo-grid">
                 <div class="comparison-card">
                     <div class="video-compare-container">
                         <div class="video-wrapper">
                             <video loop muted playsinline preload="metadata">
-                                <source src="static/demos/creative/edited/video.mp4" type="video/mp4">
+                                <source src="static/demos/substitution/edited/car-roundabout.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-overlay">
                             <video loop muted playsinline preload="metadata">
-                                <source src="static/demos/creative/origin/video.mp4" type="video/mp4">
+                                <source src="static/demos/substitution/origin/car-roundabout.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-compare-slider"><div class="slider-handle"></div></div>
                         <span class="compare-label label-left">Original</span>
-                        <span class="compare-label label-right">PISCO</span>
+                        <span class="compare-label label-right">Edited</span>
                     </div>
                 </div>
 
@@ -151,38 +151,38 @@
                     <div class="video-compare-container">
                         <div class="video-wrapper">
                             <video loop muted playsinline preload="metadata">
-                                <source src="static/demos/simulation/edited/racing-13.mp4" type="video/mp4">
+                                <source src="static/demos/substitution/edited/blackswan.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-overlay">
                             <video loop muted playsinline preload="metadata">
-                                <source src="static/demos/simulation/origin/racing-13.mp4" type="video/mp4">
+                                <source src="static/demos/substitution/origin/blackswan.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-compare-slider"><div class="slider-handle"></div></div>
                         <span class="compare-label label-left">Original</span>
-                        <span class="compare-label label-right">PISCO</span>
+                        <span class="compare-label label-right">Edited</span>
                     </div>
                 </div>
             </div>
 
-            <h3 class="comparison-title">Reposition & Resize</h3>
+            <h3 class="comparison-title">Attribute Manipulation</h3>
             <div class="demo-grid">
                 <div class="comparison-card">
                     <div class="video-compare-container">
                         <div class="video-wrapper">
                             <video loop muted playsinline preload="metadata">
-                                <source src="static/demos/reposition/edited/bird-12.mp4" type="video/mp4">
+                                <source src="static/demos/attribute_manip/edited/libby.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-overlay">
                             <video loop muted playsinline preload="metadata">
-                                <source src="static/demos/reposition/origin/bird-12.mp4" type="video/mp4">
+                                <source src="static/demos/attribute_manip/origin/libby.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-compare-slider"><div class="slider-handle"></div></div>
                         <span class="compare-label label-left">Original</span>
-                        <span class="compare-label label-right">PISCO</span>
+                        <span class="compare-label label-right">Edited</span>
                     </div>
                 </div>
 
@@ -190,17 +190,17 @@
                     <div class="video-compare-container">
                         <div class="video-wrapper">
                             <video loop muted playsinline preload="metadata">
-                                <source src="static/demos/resize/edited/deer-4.mp4" type="video/mp4">
+                                <source src="static/demos/attribute_manip/edited/blackswan.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-overlay">
                             <video loop muted playsinline preload="metadata">
-                                <source src="static/demos/resize/origin/deer-4.mp4" type="video/mp4">
+                                <source src="static/demos/attribute_manip/origin/blackswan.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="video-compare-slider"><div class="slider-handle"></div></div>
                         <span class="compare-label label-left">Original</span>
-                        <span class="compare-label label-right">PISCO</span>
+                        <span class="compare-label label-right">Edited</span>
                     </div>
                 </div>
             </div>
@@ -213,11 +213,11 @@
             <h2>Citation</h2>
             <div class="citation-container">
                 <button class="copy-button" onclick="copyToClipboard()"><span>Copy</span></button>
-                <pre id="citation-text"><code>@article{gao2026pisco,
-  title={PISCO: Precise Video Instance Insertion with Sparse Control},
-  author={Gao, Xiangbo and Li, Renjie and Chen, Xinghao and Wu, Yuheng and Feng, Suofei and Yin, Qing and Tu, Zhengzhong},
-  journal={arXiv preprint arXiv:2602.08277},
-  year={2026}
+                    <pre id="citation-text"><code>@article{gao2026pisco,
+                    title={Controllable Video Object Insertion via Multiview Priors},
+                    author={Anonymous Author},
+                    journal={arXiv preprint arXiv:XXXX.XXXX},
+                    year={2026}
 }</code></pre>
             </div>
         </div>
@@ -225,7 +225,7 @@
 
     <!-- Footer -->
     <footer>
-        <p>PISCO &middot; Texas A&M University</p>
+        <p>VOI &middot; Anonymous Affiliation</p>
     </footer>
 </div>
 
