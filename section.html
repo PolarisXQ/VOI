@@ -22,7 +22,7 @@
 
         <!-- Main Demo Video -->
         <div class="hero-video-container">
-            <video id="voi-demo" src="voi-final.mp4" autoplay loop muted playsinline class="hero-video" title="Click to hear sound"></video>
+            <video id="voi-demo" src="voi-final.mp4" autoplay loop playsinline controls class="hero-video" title="Main demo video"></video>
         </div>
 
         <!-- Development Tool Video -->
@@ -240,17 +240,3 @@
         <p>VOI &middot; Anonymous Affiliation</p>
     </footer>
 </div>
-
-<script>
-    // Unmute on click for the demo video
-    const voiDemo = document.getElementById('voi-demo');
-    if (voiDemo) {
-        voiDemo.addEventListener('click', function() {
-            if (this.muted) {
-                this.muted = false;
-                this.controls = true;
-                this.play();
-            }
-        });
-    }
-</script>
