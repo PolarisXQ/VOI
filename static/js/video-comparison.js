@@ -144,6 +144,14 @@ function createReferencePanel(taskName, videoName) {
     const panel = document.createElement('aside');
     panel.className = 'comparison-meta-panel';
 
+    const toggleBtn = document.createElement('button');
+    toggleBtn.type = 'button';
+    toggleBtn.className = 'control-signal-toggle card-control-signal-toggle';
+    toggleBtn.setAttribute('aria-pressed', 'false');
+    toggleBtn.title = 'Switch edited result between standard output and control-signal visualization';
+    toggleBtn.textContent = 'show control signal';
+
+    panel.appendChild(toggleBtn);
     panel.appendChild(createMetaBox('3D Model', createModelContent(taskName, videoName)));
     panel.appendChild(createMetaBox('Multi-View Reference Images', createGalleryContent(taskName, videoName)));
     panel.appendChild(createMetaBox('Prompt', createPromptContent(taskName, videoName)));
@@ -164,45 +172,45 @@ function initReferencePanels() {
     });
 }
 
-function initControlSignalToggles() {
-    document.querySelectorAll('.control-signal-toggle[data-demo-root][data-url-prefix]').forEach(function (btn) {
-        const gridId = btn.getAttribute('data-demo-root');
-        const urlPrefix = btn.getAttribute('data-url-prefix');
-        const grid = document.getElementById(gridId);
-        if (!grid || !urlPrefix) return;
+function initCardControlSignalToggles() {
+    document.querySelectorAll('.comparison-card-with-meta').forEach(function (card) {
+        const container = card.querySelector('.video-compare-container');
+        const btn = card.querySelector('.card-control-signal-toggle');
+        const baseVideo = card.querySelector('.video-wrapper video[data-base-name]');
+        const overlayVideo = card.querySelector('.video-overlay video');
+        if (!container || !btn || !baseVideo) return;
 
-        const baseVideos = grid.querySelectorAll('.video-wrapper video[data-base-name]');
+        const info = extractTaskAndVideo(container);
+        if (!info.taskName) return;
+
+        const urlPrefix = 'static/demos/' + info.taskName;
 
         btn.addEventListener('click', function () {
             const useMask = btn.getAttribute('aria-pressed') !== 'true';
             btn.setAttribute('aria-pressed', useMask ? 'true' : 'false');
 
-            baseVideos.forEach(function (video) {
-                const container = video.closest('.video-compare-container');
-                const overlayVideo = container ? container.querySelector('.video-overlay video') : null;
-                const t = overlayVideo ? overlayVideo.currentTime : 0;
-                const wasPlaying = !video.paused;
+            const t = overlayVideo ? overlayVideo.currentTime : 0;
+            const wasPlaying = !baseVideo.paused;
 
-                const baseName = video.dataset.baseName;
-                const maskName = video.dataset.maskBaseName || baseName;
-                const source = video.querySelector('source');
-                if (!baseName || !source) return;
+            const baseName = baseVideo.dataset.baseName;
+            const maskName = baseVideo.dataset.maskBaseName || baseName;
+            const source = baseVideo.querySelector('source');
+            if (!baseName || !source) return;
 
-                const dir = useMask ? 'edited_with_mask' : 'edited';
-                const fileStem = useMask ? maskName : baseName;
-                source.src = urlPrefix + '/' + dir + '/' + fileStem + '.mp4';
-                video.load();
+            const dir = useMask ? 'edited_with_mask' : 'edited';
+            const fileStem = useMask ? maskName : baseName;
+            source.src = urlPrefix + '/' + dir + '/' + fileStem + '.mp4';
+            baseVideo.load();
 
-                function syncAfterLoad() {
-                    video.currentTime = t;
-                    if (overlayVideo) overlayVideo.currentTime = t;
-                    if (wasPlaying) {
-                        video.play().catch(function () {});
-                    }
+            function syncAfterLoad() {
+                baseVideo.currentTime = t;
+                if (overlayVideo) overlayVideo.currentTime = t;
+                if (wasPlaying) {
+                    baseVideo.play().catch(function () {});
                 }
+            }
 
-                video.addEventListener('loadedmetadata', syncAfterLoad, { once: true });
-            });
+            baseVideo.addEventListener('loadedmetadata', syncAfterLoad, { once: true });
         });
     });
 }
@@ -293,5 +301,5 @@ function initVideoComparisons() {
         });
     });
 
-    initControlSignalToggles();
+    initCardControlSignalToggles();
 }

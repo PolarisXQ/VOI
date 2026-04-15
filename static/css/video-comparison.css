@@ -147,12 +147,17 @@
     border-color: rgba(0, 0, 0, 0.5);
 }
 
+.card-control-signal-toggle {
+    width: 100%;
+    justify-self: stretch;
+}
+
 #video-demos .container {
-    max-width: 1280px;
+    max-width: 1360px;
 }
 
 #video-demos .demo-grid {
-    max-width: 1240px;
+    max-width: 1280px;
     gap: 24px;
 }
 
@@ -171,7 +176,7 @@
 
 .comparison-meta-panel {
     display: grid;
-    grid-template-rows: auto auto auto;
+    grid-auto-rows: max-content;
     gap: 12px;
     align-content: start;
 }
@@ -237,6 +242,10 @@
 }
 
 @media (max-width: 1200px) {
+    #video-demos .container {
+        max-width: 1200px;
+    }
+
     #video-demos .demo-grid {
         max-width: 1120px;
         gap: 20px;
