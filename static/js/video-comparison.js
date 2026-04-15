@@ -149,19 +149,14 @@ function createReferencePanel(taskName, videoName) {
     return panel;
 }
 
-function createVideoTopBar() {
-    const topBar = document.createElement('div');
-    topBar.className = 'comparison-video-topbar';
-
+function createVideoOverlayButton() {
     const toggleBtn = document.createElement('button');
     toggleBtn.type = 'button';
-    toggleBtn.className = 'control-signal-toggle card-control-signal-toggle';
+    toggleBtn.className = 'control-signal-toggle video-overlay-toggle';
     toggleBtn.setAttribute('aria-pressed', 'false');
     toggleBtn.title = 'Switch edited result between standard output and control-signal visualization';
     toggleBtn.textContent = 'show control signal';
-
-    topBar.appendChild(toggleBtn);
-    return topBar;
+    return toggleBtn;
 }
 
 function initReferencePanels() {
@@ -174,21 +169,26 @@ function initReferencePanels() {
 
         const panel = createReferencePanel(info.taskName, info.videoName);
         card.insertBefore(panel, container);
-
-        const mainPanel = document.createElement('div');
-        mainPanel.className = 'comparison-main-panel';
-        mainPanel.appendChild(createVideoTopBar());
-        mainPanel.appendChild(container);
+        const toggleBtn = createVideoOverlayButton();
+        toggleBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+        });
+        toggleBtn.addEventListener('mousedown', function (e) {
+            e.stopPropagation();
+        });
+        toggleBtn.addEventListener('touchstart', function (e) {
+            e.stopPropagation();
+        });
+        container.appendChild(toggleBtn);
 
         card.classList.add('comparison-card-with-meta');
-        card.insertBefore(mainPanel, panel.nextSibling);
     });
 }
 
 function initCardControlSignalToggles() {
     document.querySelectorAll('.comparison-card-with-meta').forEach(function (card) {
         const container = card.querySelector('.video-compare-container');
-        const btn = card.querySelector('.card-control-signal-toggle');
+        const btn = card.querySelector('.video-overlay-toggle');
         const baseVideo = card.querySelector('.video-wrapper video[data-base-name]');
         const overlayVideo = card.querySelector('.video-overlay video');
         if (!container || !btn || !baseVideo) return;
