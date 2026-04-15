@@ -145,7 +145,7 @@ function createReferencePanel(taskName, videoName) {
     panel.className = 'comparison-meta-panel';
 
     panel.appendChild(createMetaBox('3D Model', createModelContent(taskName, videoName)));
-    panel.appendChild(createMetaBox('Reference Views', createGalleryContent(taskName, videoName)));
+    panel.appendChild(createMetaBox('Multi-View Reference Images', createGalleryContent(taskName, videoName)));
     panel.appendChild(createMetaBox('Prompt', createPromptContent(taskName, videoName)));
     return panel;
 }
