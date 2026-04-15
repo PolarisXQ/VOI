@@ -177,13 +177,14 @@ function initReferencePanels() {
         if (!info.taskName || !info.videoName) return;
 
         const panel = createReferencePanel(info.taskName, info.videoName);
+        card.insertBefore(panel, container);
+
         const mainPanel = document.createElement('div');
         mainPanel.className = 'comparison-main-panel';
         mainPanel.appendChild(createVideoTopBar(info.taskName, info.videoName));
         mainPanel.appendChild(container);
 
         card.classList.add('comparison-card-with-meta');
-        card.insertBefore(panel, container);
         card.insertBefore(mainPanel, panel.nextSibling);
     });
 }
